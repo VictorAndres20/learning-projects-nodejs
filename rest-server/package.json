@@ -2,8 +2,9 @@
   "name": "rest-server",
   "version": "1.0.0",
   "description": "Rest Api Server",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Victor Andres Pedraza Leon",
