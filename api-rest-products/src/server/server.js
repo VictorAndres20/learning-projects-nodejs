@@ -21,7 +21,8 @@ app.use(userRoute);
 // All other routes here
 
 /** Connect to MongoDB */
-mongoose.connect('mongodb://localhost:27017/products', (err, res) => {
+mongoose.connect(`${process.env.DB_PROTOCOL}://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+ (err, res) => {
     if(err) throw err;
 
     console.log("Mongo db connection stablished");

@@ -6,9 +6,7 @@ const app = express();
 const UserController = require('../controller/UserController');
 
 app.get('/user/list', (req, res) => {
-    res.json({
-        msg: 'Get User'
-    });
+    UserController.find(req, res);
 });
 
 app.get('/user/id/:id', (req, res) => {
@@ -23,8 +21,7 @@ app.post('/user', (req, res) => {
 });
 
 app.put('/user/:id', (req, res) => {
-    console.log(req.params.id);
-    res.json('Put user');
+    UserController.findByIdAndUpdate(req, res);
 });
 
 app.delete('/user/:id', (req, res) => {
