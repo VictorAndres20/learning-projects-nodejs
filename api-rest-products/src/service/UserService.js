@@ -3,8 +3,7 @@ const ValidationHttpError = require('../error/ValidationHttpError');
 const StringUtil = require('../util/StringUtil');
 const _ = require('underscore');
 const PageCalcUtil = require('../util/PageCalcUtil');
-//TODO npm install bcrypt
-//const EncryptUtil = require('../util/EncryptUtil');
+const EncryptUtil = require('../util/EncryptUtil');
 
 const create = async (userInput) => {
     validateUser(userInput);
@@ -52,7 +51,7 @@ const buildUserUpdate = (userInput) => {
 }
 
 const encryptPassword = (userInput) => {
-    //userInput.pass = EncryptUtil.bcryptEncryption(userInput.pass);
+    userInput.pass = EncryptUtil.bcryptEncryption(userInput.pass);
 }
 
 module.exports = {
