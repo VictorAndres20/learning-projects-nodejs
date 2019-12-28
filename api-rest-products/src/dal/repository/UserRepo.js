@@ -13,7 +13,7 @@ const create = (userInput) => {
 
 const count = () => {
     return new Promise((resolve, reject) => {
-        User.count({}).exec((err, count) => {
+        User.countDocuments({}).exec((err, count) => {
             if(err) reject(err);
 
             resolve(count);
