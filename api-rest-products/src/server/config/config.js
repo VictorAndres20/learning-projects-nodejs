@@ -24,3 +24,12 @@ process.env.DB_NAME = "products";
 /** DB host */
 process.env.USERS_PAGE_LIMIT = 4;
 /*********** */
+
+/** ********************* JWT CONFIG *********************** */
+/** JWT secret - seed */
+process.env.JWT_SECRET = "Jhysbb-wybdsop-spw";
+/*********** */
+
+/** JWT expiration time in seconds */
+process.env.JWT_EXPIRES = 60 * 60 * 24 * 30
+/*********** */

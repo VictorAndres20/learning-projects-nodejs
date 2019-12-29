@@ -34,6 +34,10 @@ const find = async (page, limit) => {
     return data;
 }
 
+const findByEmail = async (email) => {
+    return await UserRepo.findOne({email});
+}
+
 const count = async () => {
     return await UserRepo.count();
 }
@@ -58,5 +62,6 @@ module.exports = {
     create,
     findByIdAndUpdate,
     find,
-    count
+    count,
+    findByEmail
 }

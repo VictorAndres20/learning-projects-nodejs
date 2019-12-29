@@ -14,11 +14,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /** Middleware to parse body json */
 app.use(bodyParser.json());
 
-/** User ROUTES */
-app.use(userRoute);
-
-// All other routes here
-// app.use(otherRoute);
+/** ROUTES */
+app.use(require('../app/routes'));
 
 /** Listen function */
 const listen = () => {

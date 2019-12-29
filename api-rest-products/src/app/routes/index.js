@@ -1,0 +1,13 @@
+const express = require('express');
+const app = express();
+
+/** User ROUTES */
+app.use(require('./UserRoute'));
+
+/** Login ROUTES */
+app.use(require('./LoginRoute'));
+
+// All other routes here
+// app.use(otherRoute);
+
+module.exports = app;

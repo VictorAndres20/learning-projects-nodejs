@@ -4,8 +4,9 @@
 const express = require('express');
 const app = express();
 const UserController = require('../controller/UserController');
+const AuthMiddelware = require('../middleware/AuthMiddleware');
 
-app.get('/user/list', (req, res) => {
+app.get('/user/list', AuthMiddelware.verifyToken,  (req, res) => {
     UserController.find(req, res);
 });
 
@@ -20,7 +21,7 @@ app.post('/user', (req, res) => {
     UserController.create(req,res);
 });
 
-app.put('/user/:id', (req, res) => {
+app.put('/user/:id', AuthMiddelware.verifyToken ,(req, res) => {
     UserController.findByIdAndUpdate(req, res);
 });
 

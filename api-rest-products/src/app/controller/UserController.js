@@ -6,12 +6,13 @@ const create = (req, res) => {
     UserService.create(body)
     .then((userDB) => {
         res.status(201).json({
+            ok: true,
             msg: `User created ${userDB.name}`,
             data: userDB
         });
     })
     .catch((err) =>{
-        res.status(err.httpCode ? err.httpCode : 500).json({
+        res.status(err.httpCode || 500).json({
             msg: err.message
         });
     }); 
@@ -28,7 +29,7 @@ const findByIdAndUpdate = (req, res) => {
         });
     })
     .catch((err) =>{
-        res.status(err.httpCode ? err.httpCode : 500).json({
+        res.status(err.httpCode || 500).json({
             msg: err.message
         });
     }); 
@@ -45,7 +46,7 @@ const find = (req, res) => {
         });
     })
     .catch((err) => {
-        res.status(err.httpCode ? err.httpCode : 500).json({
+        res.status(err.httpCode || 500).json({
             msg: err.message
         });
     });

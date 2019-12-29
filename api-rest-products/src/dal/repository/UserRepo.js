@@ -31,6 +31,16 @@ const find = () => {
     });
 }
 
+const findOne = (query) => {
+    return new Promise((resolve, reject) => {
+        User.findOne(query, (err, user) => {
+            if(err) reject(err);
+
+            resolve(user);
+        });
+    });
+}
+
 const findPaged = (page, limit) => {
     page = limit * page;
     return new Promise((resolve, reject) => {
@@ -71,5 +81,6 @@ module.exports = {
     findByIdAndUpdate,
     find,
     findPaged,
-    count
+    count,
+    findOne
 }
