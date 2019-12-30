@@ -23,7 +23,9 @@ const count = () => {
 
 const find = () => {
     return new Promise((resolve, reject) => {
-        User.find({}).exec((err, users) => {
+        User.find({})
+        .populate('state')
+        .exec((err, users) => {
             if(err) reject(err);
 
             resolve(users);
@@ -45,8 +47,11 @@ const findPaged = (page, limit) => {
     page = limit * page;
     return new Promise((resolve, reject) => {
         User.find({})
+        .populate('state')
         .skip(page)
         .limit(limit)
+        .sort('name')
+        //.sort('-name') // sort DESC
         .exec((err, users) => {
             if(err) reject(err);
 

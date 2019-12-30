@@ -6,7 +6,7 @@ const app = express();
 const UserController = require('../controller/UserController');
 const AuthMiddelware = require('../middleware/AuthMiddleware');
 
-app.get('/user/list', [AuthMiddelware.verifyToken],  (req, res) => {
+app.get('/user/list', [AuthMiddelware.verifyToken], (req, res) => {
     UserController.find(req, res);
 });
 

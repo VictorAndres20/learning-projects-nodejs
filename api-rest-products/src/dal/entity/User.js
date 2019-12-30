@@ -19,6 +19,11 @@ let userSchema = new Schema({
     google: {
         type: Boolean,
         default: false
+    },
+    state: {
+        type: Schema.Types.ObjectId,
+        default: new mongoose.Types.ObjectId("5e0a4378cbff7b3fc8e95c3b"),
+        ref: 'UserState'
     }
 });
 
