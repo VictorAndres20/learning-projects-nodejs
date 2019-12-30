@@ -4,7 +4,6 @@
 require('./config/config');
 const express = require('express');
 const bodyParser = require('body-parser');
-const userRoute = require('../app/routes/UserRoute');
 const DBConfig = require('./config/DBConfig');
 const app = express();
 
