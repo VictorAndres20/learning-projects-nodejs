@@ -10,6 +10,16 @@ const find = () => {
     });
 }
 
+const findById = (id) => {
+    return new Promise((resolve, reject) => {
+        UserState.findById(id, (err, state) => {
+            if(err) reject(err);
+
+            resolve(state);
+        });
+    });
+}
+
 const create = (userStateInput) => {
     return new Promise((resolve, reject) => {
         let userState = new UserState(userStateInput);
@@ -23,5 +33,6 @@ const create = (userStateInput) => {
 
 module.exports = {
     find,
-    create
+    create,
+    findById
 }

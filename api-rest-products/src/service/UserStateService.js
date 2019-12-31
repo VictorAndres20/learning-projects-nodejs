@@ -6,6 +6,10 @@ const find = async () => {
     return await UserStateRepo.find();
 }
 
+const findById = async (id) => {
+    return await UserStateRepo.findById(id);
+}
+
 const create = async (input) => {
     validateInput(input);
     let userState = await UserStateRepo.create(input); 
@@ -24,5 +28,6 @@ const validateInput = (input) => {
 
 module.exports = {
     find,
-    create
+    create,
+    findById
 }

@@ -6,11 +6,11 @@ const app = express();
 const UserController = require('../controller/UserController');
 const AuthMiddelware = require('../middleware/AuthMiddleware');
 
-app.get('/user/list', [AuthMiddelware.verifyToken], (req, res) => {
+app.get('/user/list', (req, res) => {
     UserController.find(req, res);
 });
 
-app.get('/user/id/:id', (req, res) => {
+app.get('/user/id/:id', [AuthMiddelware.verifyToken], (req, res) => {
     console.log(req.params.id);
     res.json({
         data: `${id} id del usuario`

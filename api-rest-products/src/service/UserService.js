@@ -1,4 +1,5 @@
 const UserRepo = require('../dal/repository/UserRepo');
+const UserStateService = require('../service/UserStateService');
 const ValidationHttpError = require('../error/ValidationHttpError');
 const StringUtil = require('../util/StringUtil');
 const _ = require('underscore');
@@ -8,8 +9,10 @@ const EncryptUtil = require('../util/EncryptUtil');
 const create = async (userInput) => {
     validateUser(userInput);
 
+    await buildState(userInput);
+
     if(StringUtil.isBlank(userInput.pass))
-        throw new ValidationHttpError("Password is blank", 404);
+        throw new ValidationHttpError("Password is blank", 400);
     
     encryptPassword(userInput);
 
@@ -44,10 +47,20 @@ const count = async () => {
 
 const validateUser = (userInput) => {
     if(StringUtil.isBlank(userInput.name))
-        throw new ValidationHttpError("Name is blank", 404);
+        throw new ValidationHttpError("Name is blank", 400);
 
     if(StringUtil.isBlank(userInput.email))
-        throw new ValidationHttpError("Email is blank", 404);
+        throw new ValidationHttpError("Email is blank", 400);
+}
+
+const buildState = async (userInput) => {
+    if(! StringUtil.isBlank(userInput.state)){
+        let state = await UserStateService.findById(userInput.state);
+        if(state == null)
+            throw new ValidationHttpError("State not found", 404);
+
+        delete userInput.state;
+    }
 }
 
 const buildUserUpdate = (userInput) => {
