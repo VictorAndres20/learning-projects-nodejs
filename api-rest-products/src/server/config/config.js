@@ -5,7 +5,7 @@ process.env.PORT = process.env.PORT || 8000;
 
 /** ********************* DB CONFIG *********************** */
 /** DB host */
-process.env.DB_HOST = "vapedraza.com";
+process.env.DB_HOST = "yourhost.com";
 /*********** */
 
 /** DB port */
