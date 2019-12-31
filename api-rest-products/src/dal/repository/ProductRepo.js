@@ -4,9 +4,15 @@ const findPaged = (page, limit) => {
     let pageNew = page * limit;
     return new Promise((resolve, reject) => {
         Product.find({})
-        .populate('user')
         .skip(pageNew)
         .limit(limit)
+        .populate({
+            path: 'user',
+            select: ['name', 'email'],
+            populate: {
+                path: 'state'
+            }
+        })
         .exec((err, products) => {
             if(err) reject(err);
 
