@@ -1,10 +1,15 @@
 {{> header}}
     {{> navbar}}
-    <div class="container-fluid" style="margin-top:10px;">
+    <button onclick="restart()" class="btn aqua-gradient">Restart</button>
+    <div class="container-fluid" style="margin-top:10px; height: 500px;">
         <div class="row">
-            <div class="col-sm-2 text-center">Turns to be called</div>
-            <div class="col-sm-8 text-center">Actual called Turn</div>
-            <div class="col-sm-2 text-center">Turns Called</div>
+            <div class="col-sm-2 text-center" style="overflow-y: auto;" id="tickets">Turns to be called</div>
+            <div class="col-sm-8 text-center" id="ticketCalled" style="font-size: 50px;">Actual called Turn</div>
+            <div class="col-sm-2 text-center" style="overflow-y: auto;" id="assigns">Turns Called</div>
         </div>
     </div>
+    <!-- SocketIO -->
+    <script src="socket.io/socket.io.js"></script>
+    <script src="js/socket-io.js"></script>
+    <script src="js/socket-io-index-ticket.js"></script>
 {{> footer}}

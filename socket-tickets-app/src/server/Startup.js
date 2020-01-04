@@ -15,7 +15,9 @@ class Startup{
         hbs.registerHelpers();
 
         this.configureServer();
-        let start = await this.startServer(this.buildServer());
+        let httpServer = this.buildServer();
+        require('./config/Socket').buildClass(httpServer).connect();
+        let start = await this.startServer(httpServer);
         console.log(start);
     }
 

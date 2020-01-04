@@ -1,0 +1,37 @@
+{{> header}}
+    {{> navbar}}
+    <div class="container" style="margin-top:10px;">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h4>Assign Ticket</h4>
+                <hr />
+                <form class="text-center border border-light p-5">
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label>Your name:</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="name" class="form-control" placeholder="Your name">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label>Your module number:</label>
+                        </div>
+                        <div class="col">
+                            <input type="number" id="number" class="form-control" placeholder="Module number">
+                        </div>
+                    </div>
+                </form>
+                <div id="button">
+                    <button onclick="assign()" class="btn aqua-gradient">Assign</button>
+                </div>
+                <div id="message"></div>
+            </div>
+        </div>
+    </div>
+    <!-- SocketIO -->
+    <script src="socket.io/socket.io.js"></script>
+    <script src="js/socket-io.js"></script>
+    <script src="js/socket-io-assign-ticket.js"></script>
+{{> footer}}

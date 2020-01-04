@@ -6,4 +6,12 @@ router.get('/', (req, res) => {
     controller.renderIndex(req, res)
 });
 
+router.get('/generate', (req, res) => {
+    controller.renderGenerate(req, res)
+});
+
+router.get('/assign', (req, res) => {
+    controller.renderAssign(req, res)
+});
+
 module.exports = router;

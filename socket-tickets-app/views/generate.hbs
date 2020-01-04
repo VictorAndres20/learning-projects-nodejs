@@ -1,0 +1,19 @@
+{{> header}}
+    {{> navbar}}
+    <div class="container" style="margin-top:10px;">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h4>Generate new Ticket</h4>
+                <hr />
+                {{> form }}
+                <button onclick="generate()" class="btn aqua-gradient">Generate</button>
+            </div>
+        </div>
+    </div>
+    <!-- SocketIO library -->
+    <script src="socket.io/socket.io.js"></script>
+    <!-- SocketIO to start -->
+    <script src="js/socket-io.js"></script>
+    <!-- SocketIO custom functions to interact -->
+    <script src="js/socket-io-generate-ticket.js"></script>
+{{> footer}}
