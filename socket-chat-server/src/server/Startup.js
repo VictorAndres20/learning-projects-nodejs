@@ -18,7 +18,9 @@ class Startup{
         //hbs.registerHelpers();
 
         this.configureServer();
-        let start = await this.startServer(this.buildServer());
+        let server = this.buildServer();
+        require('./config/Socket').buildClass(server).connect();
+        let start = await this.startServer(server);
         console.log(start);
     }
 
@@ -42,9 +44,7 @@ class Startup{
     }
 
     buildServer = () => {
-        return this.server.getApp();
-        //When use socket io, you need http server
-        //return this.server.buildHttpServer();
+        return this.server.buildHttpServer();
     }
 }
 
