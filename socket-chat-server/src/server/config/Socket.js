@@ -29,8 +29,10 @@ class Socket{
             });
             
             this.listenAndResponse(client, PRIVATE_MESSAGE_ID, (data) => {
-                console.log("SENDED: " + this.sendPrivateMessage(client, data));
-                return data.messageData;
+                data.id = client.id;
+                this.sendPrivateMessage(client, data);
+                console.log(`SENDED: ${JSON.stringify(data)}`);
+                return data;
             });
 
         });
@@ -48,8 +50,8 @@ class Socket{
     }
 
     sendPrivateMessage = (client, data) => {
-        let {userID, messageData} = data;
-        return this.broadcastTo(client, userID, PRIVATE_MESSAGE_ID, messageData);
+        let {userID} = data;
+        return this.broadcastTo(client, userID, PRIVATE_MESSAGE_ID, data);
     }
 
     listenAndResponseAndBroadcast = (client, messageID, resCallback , messageIDBroadcast, broadcastCallback) => {

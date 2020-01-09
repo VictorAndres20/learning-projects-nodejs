@@ -4,16 +4,21 @@ function addUserConnected(id, name){
     return saveObject(USERS_ID,users);
 }
 
-function addChat(name, ownerMessage, message){
+function addChat(id, name, ownerMessage, message){
     let chats = getObject(CHATS_ID);
     let chatsFiltered = chats.filter((chat) => chat.name === name);
-    if(chatsFiltered.length !== 0){
+    if(chatsFiltered.length === 0){
+        let newChat = buildEmpyChat(id, name);
+        newChat.chats.push(buildMessage(ownerMessage, message));
+        chats = removeChat(name);
+        chats.push(newChat);
+    } else{
         let newChat = chatsFiltered[0];
         newChat.chats.push(buildMessage(ownerMessage, message));
         chats = removeChat(name);
         chats.push(newChat);
-        chats = saveObject(CHATS_ID, chats);
-    }    
+    }   
+    chats = saveObject(CHATS_ID, chats);
     return chats;
 }
 
@@ -35,12 +40,16 @@ function removeChat(name){
     return saveObject(CHATS_ID, chats);
 }
 
-function getChat(name){
+function getChat(id, name){
     let chats = getObject(CHATS_ID);
-    chats = chats.filter((chat) => chat.name === name);
-    if(chats.length === 0)
-        return [];
-    return chats[0].chats;
+    let filteredChats = chats.filter((chat) => chat.name === name);
+    if(filteredChats.length === 0){
+        let newChat = buildEmpyChat(id, name); 
+        chats.push(newChat);
+        chats = saveObject(CHATS_ID, chats);
+        return newChat;
+    }
+    return filteredChats[0];
 }
 
 function cleanChats(){
@@ -55,12 +64,30 @@ function buildEmpyChat(id, name){
     return {id, name, chats: []};
 }
 
+function buildMessage(owner, message){
+    return {owner, message};
+}
+
+function saveActualChat(id, name){
+    let data = {id, name};
+    saveObject(ACTUAL_CHAT_ID, data);
+    return data;
+}
+
+function getActualChat(){
+    return getObject(ACTUAL_CHAT_ID);
+}
+
+function cleanActualChat(){
+    saveObject(ACTUAL_CHAT_ID, {});
+}
+
 function saveObject(id, data){
     sessionStorage.setItem(id, JSON.stringify(data));
     return data;
 }
 
-function getObject(){
+function getObject(id){
     return JSON.parse(sessionStorage.getItem(id));
 }
 
