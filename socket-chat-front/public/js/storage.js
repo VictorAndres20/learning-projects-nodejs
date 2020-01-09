@@ -43,6 +43,14 @@ function getChat(name){
     return chats[0].chats;
 }
 
+function cleanChats(){
+    saveObject(CHATS_ID, []);
+}
+
+function cleanUsers(){
+    saveObject(USERS_ID, []);
+}
+
 function buildEmpyChat(id, name){
     return {id, name, chats: []};
 }
