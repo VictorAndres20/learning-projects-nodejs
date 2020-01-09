@@ -4,12 +4,12 @@ class UserRepo{
     }
 
     save = (data) => {
-        this.fileHandler.writeFileSync(data);
+        this.fileHandler.writeFileSync(JSON.stringify(data));
         return data;
     }
 
     find = () => {
-        return this.fileHandler.readFileSync();
+        return JSON.parse(this.fileHandler.readFileSync());
     }
 }
 

@@ -8,20 +8,19 @@ class UserService{
         return this.save(users);
     }
 
-    removeUserByCLientID = (users, clientID) => {
+    removeUserByClientID = (users, clientID) => {
         users.map((user, key) => {
-            if(user.clientID === clientID)
+            if(user.clientID === clientID){
                 users.splice(key, 1);
+            }
         });
         return this.save(users);
     }
 
     findUserByName = (name) => {
         let users = this.find();
-        let user = users.filter((user) => {
-            user.name === name;
-        })[0];
-        return user;
+        let usersFinded = users.filter((user) => user.name === name);
+        return usersFinded[0];
     }
 
     save = (users) => {

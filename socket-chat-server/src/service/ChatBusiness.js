@@ -6,7 +6,7 @@ class ChatBusiness{
     }
 
     addUser = (clientID, name) => {
-        if(this.userService.findUserByName() != null)
+        if(this.userService.findUserByName(name) != null)
             return messageUtil.buildMessage(false, `Name ${name} is in use`, null);
         else{
             let user = require('../dal/model/User').buildClass(clientID, name);
@@ -21,7 +21,7 @@ class ChatBusiness{
 
     removeUser = (clientID) => {
         let users = this.userService.find();
-        users = this.userService.removeUserByCLientID(users, clientID);
+        users = this.userService.removeUserByClientID(users, clientID);
         return messageUtil.buildMessage(true, `User disconnected`, {
             users
         });

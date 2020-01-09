@@ -23,8 +23,9 @@ class Socket{
 
             this.listen(client, DISCONNECT_MESSAGE_ID, (data) => {
                 console.log(`Client disconnected`);
-                this.broadcast(client, USERS_MESSAGE_ID, 
-                        this.disconnectionHandler(client, data));
+                let dataBroadcast = this.disconnectionHandler(client, data);
+                console.log(`Broadcast: ${JSON.stringify(dataBroadcast)}`);
+                this.broadcast(client, USERS_MESSAGE_ID, dataBroadcast);
             });
             
             this.listenAndResponse(client, PRIVATE_MESSAGE_ID, (data) => {
@@ -53,13 +54,13 @@ class Socket{
 
     listenAndResponseAndBroadcast = (client, messageID, resCallback , messageIDBroadcast, broadcastCallback) => {
         this.listenAndResponseAndAction(client, messageID, resCallback, (client, data) =>{
-            this.broadcastClient(client, messageIDBroadcast, broadcastCallback(data));
+            this.broadcast(client, messageIDBroadcast, broadcastCallback(data));
         });
     }
 
     listenAndResponseSameBroadcast = (client, messageID, resCallback, messageIDBroadcast) => {
         this.listenAndResponseSameAction(client, messageID, resCallback, (client, res) => {
-            this.broadcastClient(client, messageIDBroadcast, res);
+            this.broadcast(client, messageIDBroadcast, res);
         });
     }
 
