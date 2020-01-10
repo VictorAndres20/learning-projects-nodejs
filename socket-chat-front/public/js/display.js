@@ -44,11 +44,28 @@ function renderChats(chatObj, me){
     chats.map((chat) => {
         let {owner, message} = chat; 
         if(owner === me)
-            content += `<p style="background-color: #ddd"><strong>You: </strong>${message}</p>`;
+            content += `<div class="row"><div class="col-sm-12 text-right"><h4><span class="badge badge-pill badge-primary">You: ${message}</span></h4></div></div>`;
         else
-            content += `<p><strong>${owner}: </strong>${message}</p>`;
+            content += `<div class="row"><div class="col-sm-12 text-left"><h4><span class="badge badge-pill badge-dark">${owner}: ${message}</span></h4></div></div>`;
     });
     document.getElementById('chatUser').innerHTML = `Chatting with ${name}`;
     document.getElementById('chatScreen').innerHTML = content;
     displaySendMessage();
+}
+
+function renderAlerts(alerts){
+    let content = `<h5>Notifications</h5><span class="badge badge-primary">${alerts.length}</span><hr/>`;
+    alerts.map((alert, key) => {
+        content += buildMessageDiv(alert, key);
+    });
+    document.getElementById('alertsSection').innerHTML = content;
+}
+
+function buildMessageDiv(alert, index){
+    return `<div class="alert alert-success fade show" style="font-size: 12px;">
+                <strong>${alert.date}: </strong> <span>${alert.msg}</span>
+                <button style="margin-left: 6px;" type="button" class="close" onclick="removeAlertMessage(${index})" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>`;
 }

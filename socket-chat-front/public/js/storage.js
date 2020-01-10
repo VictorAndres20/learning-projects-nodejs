@@ -60,6 +60,10 @@ function cleanUsers(){
     saveObject(USERS_ID, []);
 }
 
+function cleanAlerts(){
+    saveObject(ALERTS_ID, []);
+}
+
 function buildEmpyChat(id, name){
     return {id, name, chats: []};
 }
@@ -72,6 +76,23 @@ function saveActualChat(id, name){
     let data = {id, name};
     saveObject(ACTUAL_CHAT_ID, data);
     return data;
+}
+
+function addAlert(msg){
+    let alerts = getAlerts();
+    let alert = {date: buildAlertDate(), msg};
+    alerts.push(alert);
+    return saveObject(ALERTS_ID, alerts);
+}
+
+function removeAlert(index){
+    let alerts = getAlerts();
+    alerts.splice(index, 1);
+    return saveObject(ALERTS_ID, alerts);
+}
+
+function getAlerts(){
+    return getObject(ALERTS_ID);
 }
 
 function getActualChat(){
@@ -105,4 +126,10 @@ function getUser(){
 
 function removeUser(){
     sessionStorage.removeItem(USER_ID);
+}
+
+function buildAlertDate(){
+    let date = new Date();
+    let dateBuilded = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+    return dateBuilded;
 }

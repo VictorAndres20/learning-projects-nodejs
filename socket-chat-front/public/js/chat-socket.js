@@ -10,6 +10,9 @@ socketIOListen('privateMessage', (data) => {
     addChat(data.id, data.messageData.user, data.messageData.user, data.messageData.message);
     if(getActualChat().name === data.name)
         refreshChats(getActualChat().id, getActualChat().name);
+
+    let alerts = addAlert(buildMessageAlert(data));
+    renderAlerts(alerts);
 });
 
 function enter(){
@@ -66,6 +69,7 @@ function loginChat(name, msg, data){
     dismissSession();
     displayChat();
     renderUsersConn(getUser(), data.users);
+    renderAlerts(getAlerts());
 }
 
 function logout(){
@@ -74,6 +78,7 @@ function logout(){
     cleanChats();
     cleanUsers();
     cleanActualChat();
+    cleanAlerts();
     dismissChat();
     displaySession();
 }
@@ -87,4 +92,13 @@ function validateMessage(message){
 function buildMessageToSend(userID, me, message){
     let messageData = {user: me, message};
     return {userID,name: me,messageData};
+}
+
+function buildMessageAlert(data){
+    return `You got a message from ${data.messageData.user}`;
+}
+
+function removeAlertMessage(index){
+    let alerts = removeAlert(index);
+    renderAlerts(alerts);
 }
