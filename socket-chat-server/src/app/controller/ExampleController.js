@@ -1,6 +1,6 @@
 class ExampleController{
 
-    exampleFunction = (req, res) => {
+    exampleFunction(req, res) {
         res.status(200).send("Hello my dear!!");
         /** If you have middleware body-parser */
         /*

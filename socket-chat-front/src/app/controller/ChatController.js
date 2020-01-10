@@ -1,7 +1,7 @@
 class ChatController{
     constructor(){}
 
-    renderChat = (req, res) => {
+    renderChat(req, res) {
         res.render('chat',{
             title: 'Chat'
         })

@@ -8,33 +8,33 @@ class Server{
         this.app = express();
     }
 
-    buildHttpServer = () => {
+    buildHttpServer() {
         return http.createServer(this.getApp());
     }
 
-    enablePublicContent = () => {
+    enablePublicContent() {
         this.setMiddleware(express.static(path.join(__dirname,'../../public')));
     }
 
-    enableBodyParser = () => {
+    enableBodyParser() {
         this.setMiddleware(bodyParser.urlencoded({extended: false}));
         this.setMiddleware(bodyParser.json());
     }
 
-    setRoutes = () => {
+    setRoutes() {
         this.setMiddleware(require('../app/routes'));
     }
 
-    enableViewEngine = (engine) => {
+    enableViewEngine(engine) {
         //For example if you install hbs, pass parameter 'hbs'
         this.app.set('view engine', engine);
     }
 
-    setMiddleware = (middleware) => {
+    setMiddleware(middleware) {
         this.app.use(middleware);
     }
 
-    getApp = () => {
+    getApp() {
         return this.app;
     }
 }

@@ -3,12 +3,12 @@ class UserRepo{
         this.fileHandler = require('../FileHandler').buildClass('users.json');
     }
 
-    save = (data) => {
+    save(data) {
         this.fileHandler.writeFileSync(JSON.stringify(data));
         return data;
     }
 
-    find = () => {
+    find() {
         return JSON.parse(this.fileHandler.readFileSync());
     }
 }

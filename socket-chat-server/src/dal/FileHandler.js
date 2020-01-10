@@ -6,11 +6,11 @@ class FileHandler{
         this.filePath = path.join(__dirname, '../../data', fileName);
     }
 
-    writeFileSync = (data) => {
+    writeFileSync(data) {
         fs.writeFileSync(this.filePath, data);
     }
     
-    readFileSync = () => {
+    readFileSync() {
         return fs.readFileSync(this.filePath, 'utf8');
         //return require(pathFile); // This has cache or something
     }

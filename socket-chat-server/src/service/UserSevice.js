@@ -3,12 +3,12 @@ class UserService{
         this.userRepo = require('../dal/repository/UserRepo').buildClass();
     }
 
-    addUser = (users, user) => {
+    addUser(users, user) {
         users.push(user);
         return this.save(users);
     }
 
-    removeUserByClientID = (users, clientID) => {
+    removeUserByClientID(users, clientID) {
         users.map((user, key) => {
             if(user.clientID === clientID){
                 users.splice(key, 1);
@@ -17,17 +17,17 @@ class UserService{
         return this.save(users);
     }
 
-    findUserByName = (name) => {
+    findUserByName(name) {
         let users = this.find();
         let usersFinded = users.filter((user) => user.name === name);
         return usersFinded[0];
     }
 
-    save = (users) => {
+    save(users) {
         return this.userRepo.save(users);
     }
 
-    find = () => {
+    find() {
         return this.userRepo.find();
     }
 }

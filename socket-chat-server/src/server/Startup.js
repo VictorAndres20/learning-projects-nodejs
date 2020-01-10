@@ -9,7 +9,7 @@ class Startup{
     }
 
     /** MAIN NETRY to call in index.js main file */
-    main = async () => {
+    async main() {
         
         //May be call some other function Configs, 
         //for example to init socket.io, DataBase ORM or View Engine
@@ -24,7 +24,7 @@ class Startup{
         console.log(start);
     }
 
-    startServer = (server) => {
+    startServer(server) {
         let port = process.env.PORT;
         return new Promise((resolve, reject) => {
             server.listen(port, (err) => {
@@ -35,7 +35,7 @@ class Startup{
         });
     }
 
-    configureServer = () => {
+    configureServer() {
         this.server.enablePublicContent();
         this.server.enableBodyParser();
         //this.server.enableViewEngine('hbs');
@@ -43,7 +43,7 @@ class Startup{
         return this.server;
     }
 
-    buildServer = () => {
+    buildServer() {
         return this.server.buildHttpServer();
     }
 }

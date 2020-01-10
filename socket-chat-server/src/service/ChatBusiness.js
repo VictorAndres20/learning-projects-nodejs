@@ -5,7 +5,7 @@ class ChatBusiness{
         this.userService = require('./UserSevice').buildClass();
     }
 
-    addUser = (clientID, name) => {
+    addUser(clientID, name) {
         if(this.userService.findUserByName(name) != null)
             return messageUtil.buildMessage(false, `Name ${name} is in use`, null);
         else{
@@ -19,7 +19,7 @@ class ChatBusiness{
         }        
     }
 
-    removeUser = (clientID) => {
+    removeUser(clientID) {
         let users = this.userService.find();
         users = this.userService.removeUserByClientID(users, clientID);
         return messageUtil.buildMessage(true, `User disconnected`, {
@@ -27,7 +27,7 @@ class ChatBusiness{
         });
     }
 
-    findUsersConnected = () => {
+    findUsersConnected() {
         return this.userService.find();
     }
 }
