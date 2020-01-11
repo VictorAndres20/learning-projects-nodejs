@@ -5,7 +5,7 @@ const exampleController = new ExampleController();
 const router = Router();
 
 router.get('/',(req: Request, res: Response) => {
-    exampleController.exampleFunction(req, res);
+    exampleController.findAll(req, res);
 });
 
 export default router;
