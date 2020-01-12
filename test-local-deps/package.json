@@ -1,0 +1,14 @@
+{
+  "name": "test-local-deps",
+  "version": "1.0.0",
+  "description": "Testing local deps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Victor Andres Pedraz",
+  "license": "ISC",
+  "dependencies": {
+    "test-fs": "file:local_modules/test-fs-1.0.0.tgz"
+  }
+}
