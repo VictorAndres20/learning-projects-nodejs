@@ -5,7 +5,7 @@ process.env.PORT = process.env.PORT || 8000;
 
 /** ********************* DB CONFIG *********************** */
 /** DB host */
-process.env.DB_HOST = "yourhost.com";
+process.env.DB_HOST = "localhost";
 /*********** */
 
 /** DB port */
@@ -17,7 +17,7 @@ process.env.DB_PROTOCOL = "mongodb";
 /*********** */
 
 /** DB Name */
-process.env.DB_NAME = "products";
+process.env.DB_NAME = "test";
 /*********** */
 
 /** ********************* USERS PAGEABLE CONFIG *********************** */
